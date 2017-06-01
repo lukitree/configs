@@ -32,6 +32,7 @@ function precmd() {
 
 #My stuff
 alias ls="ls --color"
+alias grep="grep --color"
 alias ll="ls --color -l"
 alias la="ls --color -a"
 alias l1="ls --color -1"

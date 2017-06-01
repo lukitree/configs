@@ -6,6 +6,11 @@ function install
 	printf "Installing $1..."
 	ln -s "$CONFIG_DIR/$1" ~/.$1
 	printf "done\n"
+
+	if [ $1 = "vimrc" ]
+		mkdir -p ~/.vim/bundle
+		git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+	fi
 }
 
 install vimrc

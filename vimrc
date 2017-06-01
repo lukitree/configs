@@ -24,6 +24,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mattn/emmet-vim'
+Plugin 'artur-shaik/vim-javacomplete2'
 
 call vundle#end()
 
@@ -31,6 +32,7 @@ call vundle#end()
 behave mswin
 filetype plugin indent on
 syntax on
+set encoding=utf-8
 set relativenumber
 set number
 set tabstop=4
