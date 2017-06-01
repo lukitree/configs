@@ -1,16 +1,14 @@
 #!/bin/bash
+CONFIG_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 function install
 {
-	echo "Installing .$1"
-	if [ -e ~/.$1 ]; then
-		echo "Previous $1 configuration file exists, making a backup copy."
-		cp ~/.$1 ~/.$1.bak
-	fi
-	cp $1 ~/.$1
+	printf "Installing $1..."
+	ln -s "$CONFIG_DIR/$1" ~/.$1
+	printf "done\n"
 }
 
 install vimrc
 install zshrc
 
-echo
-echo "Done!"
+echo "Installation Complete!"
