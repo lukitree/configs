@@ -15,7 +15,6 @@ Plugin 'VundleVim/Vundle.vim'
 " to delete a plugin remove it here and run :PluginClean
 " 
 
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'universal-ctags/ctags'
 Plugin 'majutsushi/tagbar'
 Plugin 'jiangmiao/auto-pairs'
@@ -25,6 +24,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mattn/emmet-vim'
 Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
