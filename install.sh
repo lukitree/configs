@@ -7,8 +7,7 @@ function install
 	ln -s "$CONFIG_DIR/$1" ~/.$1
 	printf "done\n"
 
-	if [ $1 = "vimrc" ]
-		mkdir -p ~/.vim/bundle
+	if [ $1 = "vimrc" ]; then
 		git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 	fi
 }
