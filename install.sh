@@ -8,6 +8,7 @@ function install
 	printf "done\n"
 
 	if [ $1 = "vimrc" ]; then
+		mkdir -p ~/.tmp
 		git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 	fi
 }
