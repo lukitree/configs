@@ -35,6 +35,7 @@ alias ls="ls --color"
 alias grep="grep --color"
 alias ll="ls --color -l"
 alias la="ls --color -a"
+alias lla="ls --color -la"
 alias l1="ls --color -1"
 alias ccat="highlight -O ansi"
 export PATH=~/bin:$PATH
