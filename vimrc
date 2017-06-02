@@ -24,6 +24,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mattn/emmet-vim'
 Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
@@ -54,11 +55,6 @@ nmap <F7>			:!make clean<CR>
 nmap <leader>,		:bprev<CR>
 nmap <leader>.		:bnext<CR>
 
-" Vim Airline Plugin
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#fnamemod = ':t'
-
 " YouCompleMe
 let g:ycm_confirm_extra_conf = 0
 
@@ -67,13 +63,22 @@ set directory=$HOME/.tmp//
 set backupdir=$HOME/.tmp//
 set undodir=$HOME/.tmp//
 
+" ## AESTHETICS ##
 if has("gui_running")
-	set background=dark
-	colorscheme solarized
-	let g:airline_theme="solarized"
 	set guifont=Monospace\ 14
+	set background=light
 
 	set guioptions-=T
 else
-	set background=light
+	set background=dark
 endif
+
+" Solarized Color Scheme
+colorscheme solarized
+
+" Vim Airline Plugin
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline_theme = "solarized"
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
