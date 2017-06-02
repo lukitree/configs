@@ -24,10 +24,10 @@ source ~HOME/.antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # Bundles
-antigen bundle arialdomartini/oh-my-git
+#antigen bundle <bundle name>
 
 # Theme
-antigen theme arialdomartini/oh-my-git-themes oppa-lana-style
+#antigen theme <theme name>
 
 # Apply
 antigen apply
