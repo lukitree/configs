@@ -13,7 +13,6 @@ Plugin 'VundleVim/Vundle.vim'
 " to install a plugin add it here and run :PluginInstall.
 " to update the plugins run :PluginInstall! or :PluginUpdate
 " to delete a plugin remove it here and run :PluginClean
-" 
 
 Plugin 'universal-ctags/ctags'
 Plugin 'majutsushi/tagbar'
