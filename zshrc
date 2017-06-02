@@ -18,10 +18,10 @@ compinit
 export PATH=~/bin:$PATH
 
 ### Antigen ###
-source ~HOME/.antigen/antigen.zsh
+#source ~HOME/.antigen/antigen.zsh
 
 # Load the oh-my-zsh Library
-antigen use oh-my-zsh
+#antigen use oh-my-zsh
 
 # Bundles
 #antigen bundle <bundle name>
@@ -30,7 +30,7 @@ antigen use oh-my-zsh
 #antigen theme <theme name>
 
 # Apply
-antigen apply
+#antigen apply
 
 ### Prompt ###
 ZLE_RPROMPT_INDENT=0
