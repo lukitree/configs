@@ -63,7 +63,7 @@ set undodir=$HOME/.tmp//
 
 " ## AESTHETICS ##
 if has("gui_running")
-	set guifont=Monospace\ 14
+	set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cANSI
 	set background=light
 
 	set guioptions-=T
