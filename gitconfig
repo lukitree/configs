@@ -1,0 +1,9 @@
+[user]
+	email = lukitree@gmail.com
+	name = Edward Jenco
+[core]
+	editor = vi
+[diff]
+	external = git_diff_wrapper
+[pager]
+	diff =
