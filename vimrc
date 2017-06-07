@@ -28,7 +28,7 @@ Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
-" Vim settings
+" Vim Settings
 behave mswin
 filetype plugin indent on
 syntax on
@@ -39,11 +39,12 @@ set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
 
-" Fold Settings
+"Folding
 set foldmethod=syntax
 set foldlevelstart=20
 
-" Hotkeys
+" Shortcuts
+"Leader
 let mapleader = ","
 nmap <F1>			:NERDTreeToggle<CR>
 nmap <F2>			:TagbarToggle<CR>
@@ -51,21 +52,30 @@ nmap <F5>			:!make run<CR>
 nmap <F6>			:!make<CR>
 nmap <F7>			:!make clean<CR>
 
+"Buffer
 nmap <leader>,		:bprev<CR>
 nmap <leader>.		:bnext<CR>
+nmap <leader>/		:noh<CR>
 
+"Quick Exit
+nmap <leader>wq		:wqa<CR>
+nmap <leader>qq		:qa<CR>
+
+"Ctrl + S Saving
 nmap <C-s>			:w<CR>
+imap <C-s>			<C-o>:w<CR>
 nmap <C-S-s>		:wa<CR>
+imap <C-S-s>		<C-o>:wa<CR>
 
-" YouCompleMe
+" YouCompleteMe (Plugin)
 let g:ycm_confirm_extra_conf = 0
 
-"temp files
+" Temporary file locations
 set directory=$HOME/.tmp//
 set backupdir=$HOME/.tmp//
 set undodir=$HOME/.tmp//
 
-" ## AESTHETICS ##
+" AESTHETICS
 if has("gui_running")
 	set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cANSI
 	set background=light
