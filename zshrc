@@ -14,6 +14,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+### Disable XON/XOFF ###
+stty -ixon
+
 ### Path ###
 export PATH=~/bin:$PATH
 
