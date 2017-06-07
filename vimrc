@@ -54,6 +54,9 @@ nmap <F7>			:!make clean<CR>
 nmap <leader>,		:bprev<CR>
 nmap <leader>.		:bnext<CR>
 
+nmap <C-s>			:w<CR>
+nmap <C-S-s>		:wa<CR>
+
 " YouCompleMe
 let g:ycm_confirm_extra_conf = 0
 

@@ -14,9 +14,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-### Disable XON/XOFF ###
-stty -ixon
-
 ### Path ###
 export PATH=~/bin:$PATH
 
@@ -60,3 +57,6 @@ alias la="ls --color -a"
 alias lla="ls --color -la"
 alias l1="ls --color -1"
 alias ccat="highlight -O ansi"
+alias vi="stty stop '' -ixoff ; vi"
+alias vim="stty stop '' -ixoff ; vim"
+alias nvim="stty stop '' -ixoff ; nvim
