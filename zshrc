@@ -59,4 +59,4 @@ alias l1="ls --color -1"
 alias ccat="highlight -O ansi"
 alias vi="stty stop '' -ixoff ; vi"
 alias vim="stty stop '' -ixoff ; vim"
-alias nvim="stty stop '' -ixoff ; nvim
+alias nvim="stty stop '' -ixoff ; nvim"
