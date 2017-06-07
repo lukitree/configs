@@ -13,7 +13,6 @@ Plugin 'VundleVim/Vundle.vim'
 " to install a plugin add it here and run :PluginInstall.
 " to update the plugins run :PluginInstall! or :PluginUpdate
 " to delete a plugin remove it here and run :PluginClean
-" 
 
 Plugin 'universal-ctags/ctags'
 Plugin 'majutsushi/tagbar'
@@ -65,7 +64,7 @@ set undodir=$HOME/.tmp//
 
 " ## AESTHETICS ##
 if has("gui_running")
-	set guifont=Monospace\ 14
+	set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cANSI
 	set background=light
 
 	set guioptions-=T
