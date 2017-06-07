@@ -1,0 +1,2 @@
+caption always "[%n %t]"
+hardstatus alwayslastline '[%H %l] %=%-w(%n %t)%+w%= [%d %M %C:%s %A]'

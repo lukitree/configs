@@ -78,6 +78,7 @@ fi
 install vimrc
 install zshrc
 install gitconfig
+install screenrc
 
 # Output any error messages
 if [ $ERRORS -gt 0 ]; then
