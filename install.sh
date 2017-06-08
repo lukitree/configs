@@ -47,6 +47,10 @@ function install
 				((ERROR++))
 			fi
 			;;
+	gitconfig)
+			mkdir -p ~/bin
+			ln -s "$CONFIG_DIR/libs/git_diff_wrapper" ~/bin/git_diff_wrapper > /dev/null 2>&1
+			;;
 		*)
 			printf "Not installing $1..."
 			;;
@@ -73,6 +77,8 @@ fi
 # Install configs
 install vimrc
 install zshrc
+install gitconfig
+install screenrc
 
 # Output any error messages
 if [ $ERRORS -gt 0 ]; then
