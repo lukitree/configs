@@ -61,7 +61,7 @@ nmap <leader>/		:noh<CR>
 
 "Quick Exit
 nmap <leader>wq		:wqa<CR>
-nmap <leader>qq		:qa<CR>
+nmap <leader>q		:qa<CR>
 
 "Ctrl + S Saving
 nmap <C-s>			:w<CR>
