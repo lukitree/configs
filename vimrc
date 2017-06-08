@@ -24,6 +24,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'mattn/emmet-vim'
 Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'tpope/vim-fugitive'
+Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
@@ -38,6 +39,8 @@ set number
 set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
+set backspace=indent,eol,start
+set spell spelllang=en_us
 
 "Folding
 set foldmethod=syntax
