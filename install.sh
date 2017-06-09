@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CONFIG_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CONFIGS=( vimrc zshrc screenrc gitconfig )
@@ -47,8 +47,11 @@ function bootstrap
 
 			git_download "https://github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
 			sym_link bootstrap/vimrc .vimrc
-			printf "${_GREEN}downloading plugins...${_RED}" && $(vim -c 'PluginInstall' -c 'qa!' > /dev/null 2>&1)
+			printf "${_GREEN}plugins...${_RED}"
+			$(vim -c 'PluginInstall' -c 'qa!' > /dev/null 2>&1)
 			sym_link vimrc
+			printf "${_GREEN}YCM...${RED}"
+			$(cd "$HOME/.vim/bundle/YouCompleteMe" && ./install.py --clang-completer > /dev/null 2>&1)
 
 			sym_link vimrc "$HOME/.config/nvim/init.vim"
 			;;
