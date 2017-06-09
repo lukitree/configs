@@ -63,7 +63,9 @@ function install
 		vimrc)
 			mkdir -p $HOME/.tmp
 			sym_link vimrc && \
+			printf "${_GOOD}vundle...${_ERROR}" && \
 			git_download "https://github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim" && \
+			printf "${_GOOD}plugins...${_ERROR}" && \
 			($(vim -c 'PluginInstall' -c 'qa!' > /dev/null 2>&1 || WARN+=("$1: Failed to install vim plugins")))
 			;;
 		nvimrc)
@@ -73,11 +75,13 @@ function install
 			;;
 		zshrc)
 			sym_link zshrc && \
+			printf "${_GOOD}antigen...${_ERROR}" && \
 			git_download "https://github.com/zsh-users/antigen" "$HOME/.antigen"
 			;;
 		gitconfig)
 			mkdir -p $HOME/bin
 			sym_link gitconfig && \
+			printf "${_GOOD}diff_wrapper...${_ERROR}" && \
 			sym_link "libs/git_diff_wrapper" "$HOME/bin/git_diff_wrapper"
 			;;
 		screenrc)
