@@ -61,7 +61,8 @@ function install
 	# Install dependencies
 	case "$1" in
 		vimrc)
-			mkdir -p $HOME/.tmp
+			mkdir -p "$HOME/.tmp"
+			mkdir -p "$HOME/.vim/bundle"
 			sym_link vimrc && \
 			printf "${_GOOD}vundle...${_ERROR}" && \
 			git_download "https://github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim" && \
@@ -69,17 +70,18 @@ function install
 			($(vim -c 'PluginInstall' -c 'qa!' > /dev/null 2>&1 || WARN+=("$1: Failed to install vim plugins")))
 			;;
 		nvimrc)
-			NVIM_CONF_DIR=$HOME/.config/nvim
-			mkdir -p $NVIM_CONF_DIR
+			NVIM_CONF_DIR="$HOME/.config/nvim"
+			mkdir -p "$NVIM_CONF_DIR"
 			sym_link vimrc "$NVIM_CONF_DIR/init.vim"
 			;;
 		zshrc)
+			mkdir -p "$HOME/.antigen"
 			sym_link zshrc && \
 			printf "${_GOOD}antigen...${_ERROR}" && \
 			git_download "https://github.com/zsh-users/antigen" "$HOME/.antigen"
 			;;
 		gitconfig)
-			mkdir -p $HOME/bin
+			mkdir -p "$HOME/bin"
 			sym_link gitconfig && \
 			printf "${_GOOD}diff_wrapper...${_ERROR}" && \
 			sym_link "libs/git_diff_wrapper" "$HOME/bin/git_diff_wrapper"
