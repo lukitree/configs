@@ -1,97 +1,105 @@
 #!/bin/bash
 CONFIG_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-ERRORS=0
-ERROR_MSG=()
-HAS_GIT=0
+CONFIGS=( vimrc zshrc screenrc gitconfig )
+OTHER_FILES=("$HOME/.config/nvim/init.vim" "$HOME/bin/git_diff_wrapper")
 
-_ERR=$(tput setaf 1)
-_GOOD=$(tput setaf 2)
-_WARN=$(tput setaf 3)
+# Terminal colors
+_RED=$(tput setaf 1)
+_GREEN=$(tput setaf 2)
+_YELLOW=$(tput setaf 3)
 _NORMAL=$(tput sgr0)
 
-function install
+# Check system for a program
+function require
 {
-	printf $_GOOD
-	local ERROR=0
-
-	# Symbolic link to config file
-	printf "Installing $1..."
-	if [ ! -e ~/.$1 ]; then
-		ln -s "$CONFIG_DIR/$1" ~/.$1
+	if ! hash $1 > /dev/null 2>&1; then
+		echo "echo Please install $1. && echo && exit"
 	fi
+}
 
-	# Install dependencies
+function sym_link
+{
+	if [ -z "${2}" ]; then LINK_LOCATION="$HOME/.$1"; else LINK_LOCATION="${2}"; fi
+	SOURCE_LOCATION="$CONFIG_DIR/$1"
+	ln -sf $SOURCE_LOCATION $LINK_LOCATION
+}
+
+function git_download
+{
+	if [ ! -d "$2" ]; then
+		$(git clone --quiet "${1}" "${2}")
+	else
+		cd ${2} && git pull > /dev/null 2>&1
+	fi
+}
+
+# Perform install functions for various rc files
+function bootstrap
+{
+	printf "${_GREEN}* Installing $1...${_RED}"
+
 	case "$1" in
 		vimrc)
-			mkdir -p ~/.tmp
+			mkdir -p "$HOME/.tmp"
+			mkdir -p "$HOME/.vim/bundle/"
+			mkdir -p "$HOME/.config/nvim"
 
-			# Grab vundle
-			if [ "$HAS_GIT" -gt 0 ]; then
-				git clone --quiet https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim > /dev/null 2>&1
-			else
-				((ERROR++))
-			fi
+			git_download "https://github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
+			sym_link bootstrap/vimrc .vimrc
+			printf "${_GREEN}plugins...${_RED}"
+			$(vim -c 'PluginInstall' -c 'qa!' > /dev/null 2>&1)
+			sym_link vimrc
+			printf "${_GREEN}YCM...${RED}"
+			$(cd "$HOME/.vim/bundle/YouCompleteMe" && ./install.py --clang-completer > /dev/null 2>&1)
 
-			# If neovim is installed, create config for it
-			if hash nvim > /dev/null 2>&1; then
-				NVIM_CONF_DIR=~/.config/nvim
-				mkdir -p $NVIM_CONF_DIR
-				ln -s "$CONFIG_DIR/$1" $NVIM_CONF_DIR/init.vim > /dev/null 2>&1
-			fi
+			sym_link vimrc "$HOME/.config/nvim/init.vim"
 			;;
-		zshrc)
-			if [ "$HAS_GIT" -gt 0 ]; then
-				git clone --quiet https://github.com/zsh-users/antigen ~/.antigen > /dev/null 2>&1
-			else
-				((ERROR++))
-			fi
-			;;
-	gitconfig)
-			mkdir -p ~/bin
-			ln -s "$CONFIG_DIR/libs/git_diff_wrapper" ~/bin/git_diff_wrapper > /dev/null 2>&1
+		gitconfig)
+			mkdir -p "$HOME/bin"
+
+			sym_link gitconfig
+			sym_link "libs/git_diff_wrapper" "$HOME/bin/git_diff_wrapper"
 			;;
 		*)
-			printf "Not installing $1..."
+			sym_link "${1}"
 			;;
 	esac
 
-	if [ "$ERROR" -gt 0 ]; then
-		echo ${_ERR}error${_NORMAL}
-	else
-		printf "done\n"
-	fi
-
-	printf $_NORMAL
+	echo "${_GREEN}done.${_NORMAL}"
 }
 
-# Check for git
-if hash git > /dev/null 2>&1; then
-	HAS_GIT=1
-else
-	HAS_GIT=0
-	ERROR_MSG[ERRORS]="Please install git"
-	((ERRORS++))
+# Check for required programs
+require git
+
+# Prompt user
+FILE_REPLACE_LIST=()
+for i in "${CONFIGS[@]}"; do
+	FILE="${HOME}/.${i}"
+	if [ -f "$FILE" ] && [ ! -L "$FILE" ]; then
+		FILE_REPLACE_LIST+=("${i}")
+	fi
+done
+
+for i in "${OTHER_FILES[@]}"; do
+	if [ -f "${i}" ] && [ ! -L "${i}" ]; then
+		FILE_REPLACE_LIST+=("${i}")
+	fi
+done
+
+if [ "${#FILE_REPLACE_LIST[@]}" -gt 0 ]; then
+	echo "${_YELLOW}The following config files will be replaced: ${_NORMAL}"
+	for i in "${FILE_REPLACE_LIST[@]}"; do
+		echo "${_RED}~/.${i}${_NORMAL}"
+	done
+	echo
+	read -p "${_YELLOW}Are you sure you want to continue? [Y/n]:${_NORMAL} " -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Nn]$ ]]; then
+		echo && exit
+	fi
 fi
 
 # Install configs
-install vimrc
-install zshrc
-install gitconfig
-install screenrc
-
-# Output any error messages
-if [ $ERRORS -gt 0 ]; then
-	printf $_ERR
-	tput smul
-	echo
-	(>&2 echo "!!! $ERRORS Error(s) !!!")
-	tput rmul
-	(>&2 printf '* %s\n' "${ERROR_MSG[@]}")
-	echo
-	tput sgr0
-fi
-
-printf $_GOOD
-echo "Process Complete!"
-printf $_NORMAL
+for i in ${CONFIGS[@]}; do bootstrap "${i}"; done
+printf "\n${_GREEN}Process Complete!${_NORMAL}\n\n"

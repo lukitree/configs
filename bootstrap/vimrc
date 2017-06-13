@@ -1,0 +1,22 @@
+" VUNDLE
+set nocompatible
+filetype plugin indent off
+syntax off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'universal-ctags/ctags'
+Plugin 'majutsushi/tagbar'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'mattn/emmet-vim'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'tpope/vim-fugitive'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()
