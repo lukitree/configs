@@ -80,7 +80,7 @@ set undodir=$HOME/.tmp//
 
 " AESTHETICS
 if has("gui_running")
-	set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cANSI
+	set guifont=DejaVu_Sans_Mono_for_Powerline:h12:cANSI
 	set background=light
 
 	set guioptions-=T
@@ -97,3 +97,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = "solarized"
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Table Mode
+let table_mode_corner = '|'
