@@ -26,6 +26,7 @@ Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'tpope/vim-fugitive'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
 
 call vundle#end()
 
