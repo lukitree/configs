@@ -99,7 +99,7 @@ colorscheme solarized
 
 " Tagbar
 let g:tagbar_ctags_bin="~/.vim/ext/ctags/ctags.exe"
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+"autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Vim Airline Plugin
 set laststatus=2
