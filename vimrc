@@ -1,3 +1,5 @@
+autocmd!
+
 " VUNDLE
 set nocompatible
 filetype plugin indent off
@@ -26,6 +28,8 @@ Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'tpope/vim-fugitive'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'othree/csscomplete.vim'
+Plugin 'shawncplus/phpcomplete.vim'
 
 call vundle#end()
 
@@ -40,7 +44,7 @@ set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
 set backspace=indent,eol,start
-set spell spelllang=en_us
+set spelllang=en_us
 
 "Folding
 set foldmethod=syntax
@@ -62,7 +66,7 @@ nmap <leader>/		:noh<CR>
 
 "Quick Exit
 nmap <leader>wq		:wqa<CR>
-nmap <leader>q		:qa<CR>
+nmap <leader>qq		:qa<CR>
 
 "Ctrl + S Saving
 nmap <C-s>			:w<CR>
@@ -84,12 +88,17 @@ if has("gui_running")
 	set background=light
 
 	set guioptions-=T
+	set guioptions-=L
 else
 	set background=dark
 endif
 
 " Solarized Color Scheme
 colorscheme solarized
+
+" Tagbar
+let g:tagbar_ctags_bin="~/.vim/ext/ctags/ctags.exe"
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Vim Airline Plugin
 set laststatus=2
@@ -100,3 +109,9 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Table Mode
 let table_mode_corner = '|'
+
+" Markdown Files
+autocmd FileType markdown setlocal spell
+
+" CSS Files
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
